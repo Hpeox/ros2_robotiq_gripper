@@ -101,9 +101,8 @@ hardware_interface::CallbackReturn RobotiqGripperHardwareInterface::on_init(cons
   // - position
   // - max velocity
   // - max effort
-  auto it = std::find_if(joint.command_interfaces.begin(), joint.command_interfaces.end(), [](const auto & cmd_itf) {
-    return cmd_itf.name == hardware_interface::HW_IF_POSITION;
-  });
+  auto it = std::find_if(joint.command_interfaces.begin(), joint.command_interfaces.end(),
+                         [](const auto& cmd_itf) { return cmd_itf.name == hardware_interface::HW_IF_POSITION; });
   if (it == joint.command_interfaces.end())
   {
     RCLCPP_FATAL(kLogger, "Joint '%s' has does not have expected '%s' interface.", joint.name.c_str(),
