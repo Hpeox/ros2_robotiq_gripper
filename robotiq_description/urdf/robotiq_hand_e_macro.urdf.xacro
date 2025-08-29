@@ -139,11 +139,11 @@
         <mimic joint="${prefix}hande_finger_distance" multiplier="-0.5" offset="${gripper_maximal_stroke/2}"/>
       </joint>
 
-      <link name="$(arg prefix)tcp_link"/>
-      <joint name="$(arg prefix)tcp_link_joint" type="fixed">
+      <link name="${prefix}tcp_link"/>
+      <joint name="${prefix}tcp_link_joint" type="fixed">
         <origin xyz="0 0 ${tcp_z_offset}" rpy="0 0 ${-pi/2}"/>
-        <parent link="$(arg prefix)hand_e_base_link"/>
-        <child link="$(arg prefix)tcp_link"/>
+        <parent link="${prefix}hand_e_base_link"/>
+        <child link="${prefix}tcp_link"/>
       </joint>
 
     </xacro:macro>
