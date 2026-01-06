@@ -144,6 +144,14 @@ protected:
   double gripper_max_speed_ = 0.0;
   double gripper_max_force_ = 0.0;
 
+  double param_protocol_min_position_ = 0.0;                                              // Parameters from Humble branch
+  double param_protocol_max_position_ = 0.0;                                              // Parameters from Humble branch
+  double protocol_range_ = param_protocol_max_position_ - param_protocol_min_position_;   // Parameters from Humble branch
+  double param_max_speed_ = 0.0;                                                          // Parameters from Humble branch
+  double param_speed_multiplier_ = 1.0;                                                   // Parameters from Humble branch
+  double param_max_force_ = 0.0;                                                          // Parameters from Humble branch
+  double param_force_multiplier_ = 1.0;                                                   // Parameters from Humble branch
+
   static constexpr double NO_NEW_CMD_ = std::numeric_limits<double>::quiet_NaN();
 
   double gripper_position_ = 0.0;

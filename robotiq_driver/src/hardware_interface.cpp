@@ -98,18 +98,16 @@ RobotiqGripperHardwareInterface::on_init(const hardware_interface::HardwareCompo
 
   const hardware_interface::ComponentInfo& joint = info_.joints.at(0);
 
-  // There is one command interface: position.
-  if (joint.command_interfaces.size() != 1)
+  // There are three command interfaces:
+  // - position
+  // - max velocity
+  // - max effort
+  auto it = std::find_if(joint.command_interfaces.begin(), joint.command_interfaces.end(),
+                         [](const auto& cmd_itf) { return cmd_itf.name == hardware_interface::HW_IF_POSITION; });
+  if (it == joint.command_interfaces.end())
   {
-    RCLCPP_FATAL(kLogger, "Joint '%s' has %zu command interfaces found. 1 expected.", joint.name.c_str(),
-                 joint.command_interfaces.size());
-    return CallbackReturn::ERROR;
-  }
-
-  if (joint.command_interfaces.at(0).name != hardware_interface::HW_IF_POSITION)
-  {
-    RCLCPP_FATAL(kLogger, "Joint '%s' has %s command interfaces found. '%s' expected.", joint.name.c_str(),
-                 joint.command_interfaces.at(0).name.c_str(), hardware_interface::HW_IF_POSITION);
+    RCLCPP_FATAL(kLogger, "Joint '%s' has does not have expected '%s' interface.", joint.name.c_str(),
+                 joint.command_interfaces[0].name.c_str(), hardware_interface::HW_IF_POSITION);
     return CallbackReturn::ERROR;
   }
 
