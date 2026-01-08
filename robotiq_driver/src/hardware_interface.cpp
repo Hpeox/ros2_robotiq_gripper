@@ -44,8 +44,8 @@ const auto kLogger = rclcpp::get_logger("RobotiqGripperHardwareInterface");
 
 constexpr uint8_t kGripperMinPos = 3;
 constexpr uint8_t kGripperMaxPos = 230;
-constexpr double kGripperMaxSpeed = 0.150;  // mm/s
-constexpr double kGripperMaxforce = 235;    // N
+constexpr double kGripperMaxSpeed = 1.0;  // mm/s
+constexpr double kGripperMaxforce = 40;    // N
 constexpr uint8_t kGripperRange = kGripperMaxPos - kGripperMinPos;
 
 constexpr auto kGripperCommsLoopPeriod = std::chrono::milliseconds{ 10 };
